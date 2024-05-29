@@ -1,6 +1,8 @@
 (ns electric-starter-app.main
   (:require [contrib.str :refer [empty->nil]]
             #?(:clj [datahike.api :as d])
+            ;; #?(:clj [datahike-s3.core])
+            #?(:clj [datahike-jdbc.core])
             [hyperfiddle.electric :as e]
             [hyperfiddle.electric-dom2 :as dom]
             [hyperfiddle.electric-ui4 :as ui]))
@@ -8,8 +10,16 @@
 (e/def db) 
 
 ;; Datahike
-#?(:clj (def cfg {:store {:backend :file :path "/tmp/example"}
+#?(:clj (def cfg {:store {:backend :jdbc
+                          :dbtype "postgresql"
+                          :host "aws-0-ap-southeast-1.pooler.supabase.com"
+                          :user "postgres.ngzcoqqvbiwsekodbpde"
+                          :password "datahike-todo"
+                          :dbname "postgres"}
+                   :schema-flexibility :read}
+          #_{:store {:backend :file :path "/tmp/example"}
                   :schema-flexibility :read}))
+
 #?(:clj (when-not (d/database-exists? cfg) (d/create-database cfg)))
 #?(:clj (def !conn (d/connect cfg)))
 

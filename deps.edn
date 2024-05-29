@@ -1,4 +1,7 @@
 {:deps    {io.replikativ/datahike {:mvn/version "0.6.1559"}
+        ;;    io.replikativ/datahike-s3 {:mvn/version "0.1.12"}
+           io.replikativ/datahike-jdbc {:mvn/version "0.3.48"}
+           org.postgresql/postgresql          {:mvn/version "42.6.0"}
            ;; Electric
            com.hyperfiddle/electric       {:git/url "https://github.com/hyperfiddle/electric" :git/sha "b32ac98df7d7ec87f225d47354671be172ffa87e"}
            ring/ring                      {:mvn/version "1.11.0"} ; comes with Jetty
