@@ -1,4 +1,4 @@
-name: hyperfiddle/electric-starter-app
+name: electric-datahike-todo-example
 on:
   push:
     branches:
