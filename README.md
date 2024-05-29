@@ -21,7 +21,7 @@ clj -M:prod -m prod
 Uberjar (optional):
 ```
 clj -X:build:prod uberjar :build/jar-name "target/app.jar"
-java -cp target/app.jar clojure.main -m prod
+APP_ENV=runtime java -cp target/app.jar clojure.main -m prod
 ```
 
 Deployment example:

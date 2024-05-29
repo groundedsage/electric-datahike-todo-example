@@ -13,4 +13,4 @@ COPY resources resources
 
 RUN clojure -X:build:prod uberjar :build/jar-name app.jar
 
-CMD java -cp app.jar clojure.main -m prod
+CMD APP_ENV=runtime java -cp app.jar clojure.main -m prod

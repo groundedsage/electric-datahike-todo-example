@@ -9,6 +9,10 @@
 
 (e/def db) 
 
+#?(:clj (def is-runtime-env?
+          (= (System/getenv "APP_ENV") "runtime")))
+
+
 ;; Datahike
 #?(:clj (def cfg {:store {:backend :jdbc
                           :dbtype "postgresql"
@@ -20,8 +24,10 @@
           #_{:store {:backend :file :path "/tmp/example"}
                   :schema-flexibility :read}))
 
-#?(:clj (when-not (d/database-exists? cfg) (d/create-database cfg)))
-#?(:clj (def !conn (d/connect cfg)))
+#?(:clj (when is-runtime-env?
+          (when-not (d/database-exists? cfg) (d/create-database cfg))))
+#?(:clj (when is-runtime-env? 
+          (def !conn (d/connect cfg))))
 
 
 
